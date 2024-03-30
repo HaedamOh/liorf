@@ -56,6 +56,21 @@ struct MulranPointXYZIRT {
      (uint32_t, t, t) (int, ring, ring)
  )
 
+struct PointHesai {
+  PCL_ADD_POINT4D   //pcl xyz
+  float intensity;
+  double timestamp;
+  uint16_t ring;                   ///< laser ring number
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW  // make sure our new allocators are aligned,
+} EIGEN_ALIGN16;                   //
+POINT_CLOUD_REGISTER_POINT_STRUCT(
+    PointHesai,
+    (float, x, x)(float, y, y)(float, z, z)(float, intensity, intensity)
+    (double, timestamp, timestamp)(std::uint16_t, ring, ring)
+)
+
+
+
 // Use the Velodyne point format as a common representation
 using PointXYZIRT = VelodynePointXYZIRT;
 

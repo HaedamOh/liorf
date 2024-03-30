@@ -63,7 +63,7 @@ typedef pcl::PointXYZI PointType;
 // <!-- liorf_localization_yjz_lucky_boy -->
 std::shared_ptr<CommonLib::common_lib> common_lib_;
 
-enum class SensorType { VELODYNE, OUSTER, LIVOX, ROBOSENSE, MULRAN};
+enum class SensorType { VELODYNE, OUSTER, LIVOX, ROBOSENSE, MULRAN, HESAI};
 
 class ParamServer
 {
@@ -195,9 +195,13 @@ public:
         {
             sensor = SensorType::MULRAN;
         } 
+        else if (sensorStr == "hesai")
+        {
+            sensor = SensorType::HESAI;
+        }   
         else {
             ROS_ERROR_STREAM(
-                "Invalid sensor type (must be either 'velodyne' or 'ouster' or 'livox' or 'robosense' or 'mulran'): " << sensorStr);
+                "Invalid sensor type (must be either 'velodyne' or 'ouster' or 'livox' or 'robosense' or 'mulran' or 'hesai'): " << sensorStr);
             ros::shutdown();
         }
 
